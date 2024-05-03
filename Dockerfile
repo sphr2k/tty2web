@@ -9,11 +9,8 @@ RUN apt-get update && \
 RUN wget https://github.com/kost/tty2web/releases/download/v3.0.3/tty2web_linux_amd64 -O /usr/local/bin/tty2web && \
     chmod +x /usr/local/bin/tty2web
 
-# Set environment variable PORT with a default value
-ENV PORT=8080
-
 # Set the entrypoint to the tty2web executable
 ENTRYPOINT ["/usr/local/bin/tty2web"]
 
 # Set default parameters for the entrypoint
-CMD ["--port", "$PORT", "-c", "admin:Ekelfernsehen2323", "-w", "/bin/bash"]
+CMD ["--port", "8080", "-c", "admin:Ekelfernsehen2323", "-w", "/bin/bash"]
