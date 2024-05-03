@@ -16,4 +16,4 @@ ENV PORT=8080
 ENTRYPOINT ["/usr/local/bin/tty2web"]
 
 # Set default parameters for the entrypoint
-CMD ["-c", "admin:Ekelfernsehen2323", "-w", "/bin/bash", "--port", "$PORT"]
+CMD ["--port", "$PORT", "-c", "admin:Ekelfernsehen2323", "-w", "/bin/bash"]
