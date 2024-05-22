@@ -11,6 +11,7 @@ RUN apt-get update \
        bash-completion curl wget software-properties-common ca-certificates \
        nano git net-tools iputils-ping gpg build-essential automake autoconf \
        netcat-openbsd lsb-release sudo iproute2 dnsutils yq jq \
+    && apt-get upgrade \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
