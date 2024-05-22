@@ -18,4 +18,6 @@ RUN apt-get update \
 RUN wget https://github.com/kost/tty2web/releases/download/v3.0.3/tty2web_linux_amd64 -O /usr/local/bin/tty2web && \
     chmod +x /usr/local/bin/tty2web
 
+COPY entrypoint.sh /
+
 ENTRYPOINT ["/entrypoint.sh"]
