@@ -1,16 +1,20 @@
-FROM ghcr.io/sphr2k/ubuntu:latest
+FROM ubuntu:24.04
 
-# Update the package list and install necessary packages
-RUN apt-get update && \
-    apt-get install -y wget ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
+ENV container docker
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
 
-# Download tty2web and set execute permissions
+RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       bash-completion curl wget software-properties-common ca-certificates \
+       nano git net-tools iputils-ping gpg build-essential automake autoconf \
+       netcat-openbsd lsb-release sudo iproute2 dnsutils yq jq \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 RUN wget https://github.com/kost/tty2web/releases/download/v3.0.3/tty2web_linux_amd64 -O /usr/local/bin/tty2web && \
     chmod +x /usr/local/bin/tty2web
 
-# Set the entrypoint to the tty2web executable
-ENTRYPOINT ["/usr/local/bin/tty2web"]
-
-# Set default parameters for the entrypoint
-CMD ["--port", "8080", "-c", "admin:Ekelfernsehen2323", "-w", "/bin/bash"]
+ENTRYPOINT ["/entrypoint.sh"]
