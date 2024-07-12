@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM google/cloud-sdk:latest
 
 ENV container docker
 ENV LC_ALL C
